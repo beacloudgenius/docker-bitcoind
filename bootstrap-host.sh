@@ -4,7 +4,7 @@
 #
 set -ex
 
-BTC_IMAGE=${BTC_IMAGE:-kylemanna/bitcoind}
+BTC_IMAGE=${BTC_IMAGE:-cloudgenius/bitcoind}
 
 distro=$1
 shift

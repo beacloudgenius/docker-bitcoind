@@ -1,10 +1,10 @@
 Bitcoind for Docker
 ===================
 
-[![Docker Stars](https://img.shields.io/docker/stars/kylemanna/bitcoind.svg)](https://hub.docker.com/r/kylemanna/bitcoind/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/kylemanna/bitcoind.svg)](https://hub.docker.com/r/kylemanna/bitcoind/)
+[![Docker Stars](https://img.shields.io/docker/stars/cloudgenius/bitcoind.svg)](https://hub.docker.com/r/cloudgenius/bitcoind/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/cloudgenius/bitcoind.svg)](https://hub.docker.com/r/cloudgenius/bitcoind/)
 [![Build Status](https://travis-ci.org/kylemanna/docker-bitcoind.svg?branch=master)](https://travis-ci.org/kylemanna/docker-bitcoind/)
-[![ImageLayers](https://images.microbadger.com/badges/image/kylemanna/bitcoind.svg)](https://microbadger.com/#/images/kylemanna/bitcoind)
+[![ImageLayers](https://images.microbadger.com/badges/image/cloudgenius/bitcoind.svg)](https://microbadger.com/#/images/cloudgenius/bitcoind)
 
 Docker image that runs the Bitcoin bitcoind node in a container for easy deployment.
 
@@ -36,13 +36,13 @@ Quick Start
         docker run -v bitcoind-data:/bitcoin --name=bitcoind-node -d \
             -p 8333:8333 \
             -p 127.0.0.1:8332:8332 \
-            kylemanna/bitcoind
+            cloudgenius/bitcoind
 
 2. Verify that the container is running and bitcoind node is downloading the blockchain
 
         $ docker ps
         CONTAINER ID        IMAGE                         COMMAND             CREATED             STATUS              PORTS                                              NAMES
-        d0e1076b2dca        kylemanna/bitcoind:latest     "btc_oneshot"       2 seconds ago       Up 1 seconds        127.0.0.1:8332->8332/tcp, 0.0.0.0:8333->8333/tcp   bitcoind-node
+        d0e1076b2dca        cloudgenius/bitcoind:latest     "btc_oneshot"       2 seconds ago       Up 1 seconds        127.0.0.1:8332->8332/tcp, 0.0.0.0:8333->8333/tcp   bitcoind-node
 
 3. You can then access the daemon's output thanks to the [docker logs command]( https://docs.docker.com/reference/commandline/cli/#logs)
 

@@ -3,7 +3,7 @@ Building
 
 The image can be built from source by running:
 
-        docker build .
+        docker build -t cloudgenius/bitcoind .
 
 A recommended security practice is to add an additional unprivileged user to run the daemon as on the host. For example, as a privileged user, run this on the host:
 

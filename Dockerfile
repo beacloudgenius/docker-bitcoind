@@ -9,9 +9,9 @@ FROM ubuntu:latest as builder
 #    && apk add --update --no-cache gnupg gosu gcompat libgcc
 RUN apt update \
     && apt install -y --no-install-recommends \
-        ca-certificates \
-        wget \
-        gnupg \
+    ca-certificates \
+    wget \
+    gnupg \
     && apt clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ARG VERSION=0.21.0
@@ -36,7 +36,7 @@ RUN cd /tmp \
     && rm -v /opt/bitcoin/bin/test_bitcoin /opt/bitcoin/bin/bitcoin-qt
 
 FROM ubuntu:latest
-LABEL maintainer="Kyle Manna <kyle@kylemanna.com>"
+LABEL maintainer="Nilesh Londhe <nilesh@cloudgeni.us>"
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 ENV HOME /bitcoin
