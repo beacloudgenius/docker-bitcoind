@@ -1,0 +1,14 @@
+version: "3.2"
+services:
+  bitcoind-node:
+    image: cloudgenius/bitcoind
+    ports:
+      - "8333:8333"
+      - "127.0.0.1:8332:8332"
+    volumes:
+      - bitcoind-data:/bitcoin
+      - $PWD/etc/bitcoin.conf:/bitcoin/.bitcoin/bitcoin.conf
+      - /etc/nginx/vhost.d
+      - /usr/share/nginx/html
+volumes:
+  bitcoind-data:
