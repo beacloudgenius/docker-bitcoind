@@ -1,0 +1,53 @@
+version: '3.4'
+services:
+  bitcoind:
+    build: .
+    image: cloudgenius/bitcoind
+    ports:
+      - "8333:8333"
+      - "127.0.0.1:8332:8332"
+    volumes:
+      - bitcoind-data:/bitcoin
+      - $PWD/etc/bitcoin.conf:/bitcoin/.bitcoin/bitcoin.conf
+      - /etc/nginx/vhost.d
+      - /usr/share/nginx/html
+    expose:
+      - "8333"
+      - "8332"
+
+  nbxplorer:
+    image: nicolasdorier/nbxplorer:1.0.0.18
+    expose:
+      - "32838"
+    environment:
+      NBXPLORER_NETWORK: mainnet
+      NBXPLORER_RPCURL: http://localhost:8333/
+      NBXPLORER_RPCUSER: mysecretrpcuser
+      NBXPLORER_RPCPASSWORD: mysecretrpcpassword
+      NBXPLORER_NODEENDPOINT: localhost:8332
+      NBXPLORER_BIND: 0.0.0.0:32838
+      NBXPLORER_NOAUTH: 1
+    links:
+      - bitcoind
+
+  btcpayserver:
+    image: nicolasdorier/btcpayserver:1.0.0.23
+    ports:
+      - 8080:49392
+    expose:
+      - "49392"
+    environment:
+      BTCPAY_POSTGRES: "User ID=postgres;Host=postgres;Port=5432;Database=btcpayserver"
+      BTCPAY_NETWORK: mainnet
+      BTCPAY_EXPLORERURL: http://nbxplorer:32838/
+      BTCPAY_BIND: 0.0.0.0:49392
+    links:
+      - nbxplorer
+      - postgres
+
+  postgres:
+    image:  postgres:9.6.5
+
+
+volumes:
+  bitcoind-data:
